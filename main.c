@@ -4,8 +4,6 @@
 #include<unistd.h>
 #include<dirent.h>
 
-#define BUFSIZE 256
-
 void
 number (char* number_option, char* path) {
 
@@ -58,8 +56,7 @@ number (char* number_option, char* path) {
                 i++;
             }
         }
-	}
-	/*else if (*number_option == 'b') {
+	} else if (*number_option == 'b') {
         while ((entry = readdir(dir))) {
             if ((strcmp(entry->d_name, ".") != 0) && (strcmp(entry->d_name, "..") != 0)) {      //skip . and .. directory
                 new_name = calloc(strlen(entry->d_name) + strlen(path) + 2, sizeof(char));
@@ -69,13 +66,14 @@ number (char* number_option, char* path) {
                 strcat(new_name, entry->d_name);
 
                 len = strlen(new_name);
-                for (int j = 4; j > 0; --j) {
+                for (int j = 2; j > -2; --j) {
                     new_name[len + j] = new_name[len - k];
                     k++;
                 }
 
-                new_name[len - 4] = i + '0';
-                new_name[len - 3] = '_';
+                new_name[len - 4] = '_';
+                new_name[len - 3] = i + '0';
+                new_name[len - 2] = '.';
 
                 strcat(entry_path, path);
                 strcat(entry_path, entry->d_name);
@@ -85,7 +83,7 @@ number (char* number_option, char* path) {
                 i++;
             }
         }
-	}*/
+	}
 }
 
 int
