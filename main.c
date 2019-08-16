@@ -5,6 +5,17 @@
 #include<dirent.h>
 
 void
+print_help () {
+    printf("Options:\n");
+    printf("-i\t\tinput directory\n");
+    printf("-n\t\tnumber\n");
+    printf(" f\t\tat front\n");
+    printf(" b\t\tat back\n");
+    printf(" r\t\treplace whole file name by number\n");
+
+}
+
+void
 number (char* number_option, char* path) {
 
     int i = 0;
@@ -94,7 +105,7 @@ main (int argc, char** argv) {
 	char what;
 	char *number_option;
 
-	while ((c = getopt(argc, argv, "n:i:")) != -1) {
+	while ((c = getopt(argc, argv, "n:i:h")) != -1) {
 		switch (c) {
 			case 'n':
 				what = 'n';
@@ -105,6 +116,9 @@ main (int argc, char** argv) {
                 path = optarg;
                 break;
 
+			case 'h':
+				what = 'h';
+
             default:
                 printf("Unknown option.\n");
 		}
@@ -112,5 +126,7 @@ main (int argc, char** argv) {
 
 	if (what == 'n') {
 	    number(number_option, path);
+	} else if (what == 'h') {
+		print_help();
 	}
 }
